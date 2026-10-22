@@ -8,6 +8,7 @@ Hub pessoal de estudos em português do Brasil. Next.js App Router, React, TypeS
 - Vercel conectada a este repositório, com Next.js configurado.
 - Supabase configurado em um projeto separado para a aplicação.
 - Banco instalado em 22 de outubro de 2026, com RLS e as funções de salvamento e leitura. Site URL e retorno de autenticação configurados para o endereço de produção.
+- SMTP personalizado do Brevo habilitado no Supabase para confirmação e recuperação de acesso. A entrega de mensagens ainda precisa ser verificada com uma conta real.
 
 A publicação usa apenas a URL e a chave publicável do Supabase. Chaves administrativas não integram o site ou este repositório. Consulte [VALIDACAO.md](VALIDACAO.md) para os testes realizados e os fluxos de e-mail ainda pendentes de verificação.
 

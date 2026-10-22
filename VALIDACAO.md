@@ -45,6 +45,7 @@ Durante o teste foi corrigida uma realimentação na seleção do canvas ao cria
 - A implantação compilou com sucesso, atingiu `READY` e foi promovida para [nexo-estudos-six.vercel.app](https://nexo-estudos-six.vercel.app).
 - Página pública respondeu HTTP 200 e exibiu a tela de entrada no navegador. Cabeçalho `X-Frame-Options: DENY` presente.
 - Site URL e Redirect URL do Supabase configurados para `https://nexo-estudos-six.vercel.app`.
+- SMTP personalizado do Brevo habilitado, com o nome de remetente Nexo Estudos. Após o responsável inserir e salvar a credencial, o painel confirmou a senha armazenada e oculta. Credenciais e dados da conta não integram este repositório. Esse estado confirma a configuração salva, sem atestar entrega de e-mail.
 - `.vercelignore` exclui arquivos temporários, credenciais locais e dependências da publicação. A lista de envio foi conferida antes da implantação.
 - Consulta de logs da implantação na janela dos últimos cinco minutos após os acessos de verificação: nenhum registro de nível `error`.
 
@@ -56,7 +57,7 @@ Ainda precisam ser executados com contas reais de teste e acesso aos respectivos
 2. Entrada, renovação de sessão, saída e recuperação de senha no serviço real.
 3. Teste `pnpm test:database` com duas contas confirmadas no projeto de homologação.
 4. Roteiro de aceitação completo do README na implantação Vercel.
-5. Envio de e-mails e URLs de redirecionamento de produção.
+5. Entrega dos e-mails de confirmação e recuperação, incluindo abertura dos links de produção.
 6. Simulação de perda e retorno de rede no ambiente configurado e conflito real entre duas janelas.
 
 O tratamento de falhas e o bloqueio de conflitos estão implementados; os cenários SQL de rollback e revisão foram exercitados localmente. Isso não equivale a uma validação de rede ou de autenticação de produção.
