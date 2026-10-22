@@ -33,9 +33,24 @@ Verificado pela interface:
 
 Durante o teste foi corrigida uma realimentação na seleção do canvas ao criar subtópicos e foi limitado o enquadramento inicial. A versão enviada contém essas correções. Os dados de estudo usados nesses testes foram criados pelas ações da interface, exclusivamente no banco descartável.
 
+## Publicação e verificação externa — 22 de outubro de 2026
+
+- A migração do repositório foi executada uma vez em um novo projeto Supabase, após confirmar que o schema `public` não continha tabelas.
+- Confirmadas as três tabelas, RLS habilitada, privilégios para `authenticated` e ausência de leitura por `anon`.
+- Teste SQL no PostgreSQL real: criação de mapa sob o papel `authenticated`, salvamento e leitura de tópico e coordenadas, bloqueio de revisão antiga e isolamento de leitura/escrita para outro usuário. Os usuários de teste não tinham credenciais de login; toda a transação foi revertida. Isso verifica banco e RLS, sem equivaler a um teste de Supabase Auth.
+- API pública de autenticação respondeu HTTP 200: e-mail habilitado, cadastro permitido e confirmação de e-mail obrigatória.
+- Consultas REST anônimas a `study_maps`, `topics` e `topic_relations` responderam HTTP 401.
+- Security Advisor reexecutado após a instalação: zero erros, zero avisos e zero sugestões.
+- Vercel: Next.js, Node.js 24.x, repositório GitHub conectado e duas variáveis públicas configuradas.
+- A implantação compilou com sucesso, atingiu `READY` e foi promovida para [nexo-estudos-six.vercel.app](https://nexo-estudos-six.vercel.app).
+- Página pública respondeu HTTP 200 e exibiu a tela de entrada no navegador. Cabeçalho `X-Frame-Options: DENY` presente.
+- Site URL e Redirect URL do Supabase configurados para `https://nexo-estudos-six.vercel.app`.
+- `.vercelignore` exclui arquivos temporários, credenciais locais e dependências da publicação. A lista de envio foi conferida antes da implantação.
+- Consulta de logs da implantação na janela dos últimos cinco minutos após os acessos de verificação: nenhum registro de nível `error`.
+
 ## Verificações externas pendentes
 
-Conforme a escolha de preparar um projeto Supabase separado, não foram criados recursos externos nem alterado o projeto existente de outro sistema. Ainda precisam ser executados após a configuração:
+Ainda precisam ser executados com contas reais de teste e acesso aos respectivos e-mails:
 
 1. Cadastro e confirmação de e-mail no Supabase real.
 2. Entrada, renovação de sessão, saída e recuperação de senha no serviço real.

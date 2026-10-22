@@ -1,0 +1,8 @@
+.qa/
+.pnpm-store/
+.env*
+.next/
+node_modules/
+test-results/
+*.tsbuildinfo
+.git/

@@ -2,6 +2,15 @@
 
 Hub pessoal de estudos em português do Brasil. Next.js App Router, React, TypeScript, React Flow, Supabase Auth/PostgreSQL e implantação na Vercel.
 
+## Publicação
+
+- Site: [nexo-estudos-six.vercel.app](https://nexo-estudos-six.vercel.app).
+- Vercel conectada a este repositório, com Next.js configurado.
+- Supabase configurado em um projeto separado para a aplicação.
+- Banco instalado em 22 de outubro de 2026, com RLS e as funções de salvamento e leitura. Site URL e retorno de autenticação configurados para o endereço de produção.
+
+A publicação usa apenas a URL e a chave publicável do Supabase. Chaves administrativas não integram o site ou este repositório. Consulte [VALIDACAO.md](VALIDACAO.md) para os testes realizados e os fluxos de e-mail ainda pendentes de verificação.
+
 ## O que está implementado
 
 - Cadastro, entrada, saída e recuperação de senha por e-mail com Supabase Auth.
@@ -58,7 +67,7 @@ pnpm start
 
 ## Configurar o Supabase
 
-1. Crie um **novo projeto separado** para o Nexo, na organização e região que preferir. Esta entrega não altera projetos existentes nem provisiona recursos pagos.
+1. Para outra instalação, crie um **novo projeto separado** para o Nexo, na organização e região que preferir. O projeto de produção indicado acima já está configurado; não reaplique a migração nele.
 2. No **SQL Editor**, execute integralmente [`supabase/migrations/202610210001_nexo.sql`](supabase/migrations/202610210001_nexo.sql). A migração foi feita para um banco novo; execute uma vez. Ela cria tabelas, índices, políticas e funções dentro de uma transação.
 3. Confirme que o **Data API** está habilitado e expõe o schema `public`. A migração já concede os privilégios necessários a `authenticated`; o papel `anon` não recebe acesso aos dados.
 4. Em **Authentication → Sign In / Providers**, habilite **Email** e o cadastro de novos usuários. A aplicação usa e-mail e senha; não exige provedores sociais.
@@ -90,7 +99,7 @@ O tema é a única preferência do produto armazenada localmente, com chave vers
 
 ## Publicar na Vercel
 
-1. Importe o repositório `gusstavovp/nexo-estudos` em um **novo projeto** da sua conta Vercel.
+1. Para outra instalação, importe o repositório `gusstavovp/nexo-estudos` em um **novo projeto** da sua conta Vercel. A publicação indicada acima já está vinculada ao GitHub.
 2. Mantenha o preset **Next.js**, diretório raiz do repositório e Node.js **22.x ou superior**. O `vercel.json` já declara o framework.
 3. Configure `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` nos ambientes desejados **antes** da compilação. Use um projeto Supabase de homologação para prévias quando possível.
 4. Publique e adicione a URL resultante ao **Site URL / Redirect URLs** do Supabase, conforme a seção anterior.
@@ -157,7 +166,7 @@ scripts/                 integração opcional contra Supabase real
 
 ## Limitações desta primeira versão
 
-- O novo projeto Supabase, suas configurações de autenticação/e-mail e a implantação na Vercel dependem da conta do responsável. Nenhuma configuração externa é inferida de outros sistemas.
+- O envio de e-mails de confirmação e recuperação depende da configuração do provedor de e-mail do Supabase e deve ser validado com contas reais do responsável.
 - O limite é de **1.000 tópicos por mapa**, 30 tags e até 100 links e 100 anotações por tópico. O salvamento envia o snapshot inteiro; mapas grandes pedem paginação e operações incrementais numa próxima versão.
 - Não há colaboração em tempo real ou fusão automática. Conflitos entre janelas são bloqueados; exporte o rascunho e reabra a versão mais recente. A exportação JSON é para recuperação manual; ainda não existe importador na interface.
 - O rascunho não salvo vive na memória. Há aviso ao fechar enquanto há alterações, mas não há funcionamento offline nem sincronização em segundo plano após encerrar a página.
